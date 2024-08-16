@@ -129,6 +129,49 @@ docker compose up
 docker compose down
 ```
 
+## How to Access and Manage Containers
+
+You can view the list of active containers with docker ps.
+
+Run:
+
+```bash
+docker exec -it <nombre_o_id_del_contenedor> bash
+```
+
+For example: docker exec -it inventory-system-db-1 bash allows you to access the shell of the database container.
+
+SQL scripts are copied from local to the container as follows:
+
+```bash
+ docker cp <ruta_local_del_archivo> <nombre_o_id_del_contenedor>:<ruta_destino_en_el_contenedor>
+```
+
+Connect to the psql console of the database in the container:
+
+```bash
+docker exec -it inventory-system-db-1 psql -U inventoryuser -d inventorydb
+```
+Example to execute a script:
+
+```bash
+\i /tmp/script.sql
+```
+To view all tables:
+
+```bash
+\dt
+```
+This Docker setup uses local volumes for data storage:
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+To view the volumes:
+
+```bash
+docker volume ls
+```
+
 # Contributing
 
 If you'd like to contribute to this project, please follow these steps:

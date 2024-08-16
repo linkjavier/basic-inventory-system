@@ -7,6 +7,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        db_table = 'product'
 
 class Warehouse(models.Model):
     name = models.CharField(max_length=255)
@@ -14,6 +17,9 @@ class Warehouse(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        db_table = 'warehouse'
 
 class Inventory(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -22,6 +28,9 @@ class Inventory(models.Model):
 
     def __str__(self):
         return f"{self.product.name} in {self.warehouse.name}"
+    
+    class Meta:
+        db_table = 'inventory'
 
 class Sale(models.Model):
     sale_date = models.DateTimeField(auto_now_add=True)
@@ -31,3 +40,6 @@ class Sale(models.Model):
 
     def __str__(self):
         return f"Sold {self.quantity_sold} of {self.product.name}"
+
+    class Meta:
+        db_table = 'sale'

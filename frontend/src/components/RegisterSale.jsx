@@ -8,9 +8,12 @@ function RegisterSale() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log('Product ID:', productId);
+        console.log('Warehouse ID:', warehouseId);
+        console.log('Quantity Sold:', quantitySold);
         axios.post('http://localhost:8000/api/sales/', {
-            product_id: productId,
-            warehouse_id: warehouseId,
+            product: productId,
+            warehouse: warehouseId,
             quantity_sold: quantitySold
         })
         .then(response => {
