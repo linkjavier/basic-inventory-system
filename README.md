@@ -7,7 +7,7 @@ This project is a Basic Inventory Management System built using Django for the b
 
 ## Features
 
-- **Inventory Management**: Manage products, categories, and stock levels.
+- **Inventory Management**: Manage products, sales, and stock levels.
 - **User Authentication**: Secure login and registration system. (Future)
 - **Responsive UI**: Fully responsive design with React and TailwindCSS. (Future)
 - **API**: RESTful API with Django Rest Framework.
@@ -33,8 +33,8 @@ Before running this project, ensure you have the following installed:
 1. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/linkjavier/basic-inventory-management.git
-    cd basic-inventory-management
+    git clone https://github.com/linkjavier/basic-inventory-system.git
+    cd basic-inventory-system
     ```
 
 2. **Create a `.env` File**
@@ -60,9 +60,16 @@ Before running this project, ensure you have the following installed:
 
     This will start the Django backend, React frontend, and PostgreSQL database.
 
+  **Execute SQL Commands**
+
+    -create-tables.sql
+    -create-procedures.sql
+
+    This SQL Scripts create the structure of the database
+
 4. **Apply Migrations**
 
-    Once the containers are up and running, open a new terminal window and run:
+    Once the containers are up and running and SQL Scripts executed, open a new terminal window and run:
 
     ```bash
     docker-compose exec web python manage.py migrate
@@ -89,18 +96,20 @@ Before running this project, ensure you have the following installed:
 ├── backend
 │   ├── Dockerfile
 │   ├── manage.py
-│   ├── inventory_management
-│   ├── api
+│   ├── inventory_project
+│   ├── inventory
 │   └── requirements.txt
 ├── frontend
 │   ├── Dockerfile
 │   ├── public
 │   ├── src
 │   ├── package.json
-│   └── tailwind.config.js
+│   └── tailwind.config.js (Future)
 ├── .env
 ├── docker-compose.yml
 └── README.md
+└── create-procedures.sql
+└── create-tables.sql
 ```
 
 backend/: Contains the Django project and applications.
@@ -120,6 +129,41 @@ docker compose up
 docker compose down
 ```
 
-## Contributing
+# Contributing
 
-Feel free to contribute to this project by submitting a pull request. Please ensure all tests pass and follow the coding standards outlined in the project.
+If you'd like to contribute to this project, please follow these steps:
+
+1. **Fork the repository.**
+2. **Create a feature branch:**
+
+    ```bash
+    git checkout -b feature/your-feature
+    ```
+
+3. **Commit your changes:**
+
+    ```bash
+    git commit -am 'Add some feature'
+    ```
+
+4. **Push to the branch:**
+
+    ```bash
+    git push origin feature/your-feature
+    ```
+
+5. **Create a new Pull Request.**
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [React](https://reactjs.org/).
+- [django](https://www.djangoproject.com/).
+- [Docker Compose](https://docs.docker.com/compose/).
+- [Tailwind CSS](https://tailwindcss.com/).
+---
+
+Made with 💙 by [Javier Charria Gómez](https://github.com/linkjavier)
