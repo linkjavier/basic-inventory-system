@@ -16,6 +16,42 @@ class InventoryViewSet(viewsets.ModelViewSet):
     queryset = Inventory.objects.all()
     serializer_class = InventorySerializer
 
+    def create(self, request, *args, **kwargs):
+        product_id = request.data.get('product')
+        warehouse_id = request.data.get('warehouse')
+        quantity = request.data.get('quantity')
+
+        # Print the values to the console
+        print(f"Request Data: {request.data}")
+        print(f"Product ID: {product_id}")
+        print(f"Warehouse ID: {warehouse_id}")
+        print(f"Quantity: {quantity}")
+
+        try:
+            with connection.cursor() as cursor:
+                cursor.callproc('update_inventory', [product_id, warehouse_id, quantity])
+            return Response({"detail": "Inventory updated successfully."}, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+    def update(self, request, *args, **kwargs):
+        product_id = request.data.get('product')
+        warehouse_id = request.data.get('warehouse')
+        quantity = request.data.get('quantity')
+
+        # Print the values to the console
+        print(f"Request Data: {request.data}")
+        print(f"Product ID: {product_id}")
+        print(f"Warehouse ID: {warehouse_id}")
+        print(f"Quantity: {quantity}")
+
+        try:
+            with connection.cursor() as cursor:
+                cursor.callproc('update_inventory', [product_id, warehouse_id, quantity])
+            return Response({"detail": "Inventory updated successfully."}, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
 class SaleViewSet(viewsets.ModelViewSet):
     queryset = Sale.objects.all()
     serializer_class = SaleSerializer
